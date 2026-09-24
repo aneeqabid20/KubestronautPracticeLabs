@@ -1,0 +1,116 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=lib/common.sh
+source "$ROOT_DIR/lib/common.sh"
+source "$ROOT_DIR/lib/challenge.sh"
+source "$ROOT_DIR/lib/kubernetes.sh"
+source "$ROOT_DIR/lib/validation.sh"
+source "$ROOT_DIR/lib/node.sh"
+
+usage() {
+  cat <<'EOF'
+KubestronautPracticeLabs
+
+Usage:
+  ./practice list [cka|ckad|cks]
+  ./practice show <challenge-path>
+  ./practice setup <challenge-path>
+  ./practice verify <challenge-path>
+  ./practice reset <challenge-path>
+  ./practice solution <challenge-path>
+
+Example:
+  ./practice setup ckad/application-observability-maintenance/probes-health-checks/q001
+EOF
+}
+
+cmd_list() {
+  local cert="${1:-}"
+  list_challenges "$cert"
+}
+
+cmd_show() {
+  local qdir
+  qdir="$(resolve_challenge "$1")"
+  cat "$qdir/question.md"
+}
+
+cmd_solution() {
+  local qdir
+  qdir="$(resolve_challenge "$1")"
+  cat "$qdir/solution.md"
+}
+
+cmd_setup() {
+  local qdir
+  qdir="$(resolve_challenge "$1")"
+
+  require_command kubectl
+  require_cluster_access
+
+  info "Resetting previous attempt..."
+  run_challenge_script "$qdir" reset.sh quiet
+
+  info "Preparing challenge..."
+  run_challenge_script "$qdir" setup.sh
+
+  success "Challenge starting state prepared."
+  printf '\n'
+  print_challenge_header "$qdir"
+  cat "$qdir/question.md"
+}
+
+cmd_verify() {
+  local qdir
+  qdir="$(resolve_challenge "$1")"
+
+  require_command kubectl
+  require_cluster_access
+
+  print_challenge_header "$qdir"
+  if run_challenge_script "$qdir" verify.sh; then
+    printf '\n'
+    success "Challenge PASSED"
+    return 0
+  else
+    printf '\n'
+    error "Challenge NOT PASSED"
+    return 1
+  fi
+}
+
+cmd_reset() {
+  local qdir
+  qdir="$(resolve_challenge "$1")"
+
+  require_command kubectl
+  require_cluster_access
+
+  run_challenge_script "$qdir" reset.sh
+  success "Challenge reset complete."
+}
+
+main() {
+  local command="${1:-}"
+  case "$command" in
+    list)
+      shift
+      cmd_list "${1:-}"
+      ;;
+    show|setup|verify|reset|solution)
+      [[ $# -ge 2 ]] || die "Missing challenge path. Run ./practice for help."
+      shift
+      "cmd_${command}" "$1"
+      ;;
+    -h|--help|"")
+      usage
+      ;;
+    *)
+      die "Unknown command: $command"
+      ;;
+  esac
+}
+
+main "$@"

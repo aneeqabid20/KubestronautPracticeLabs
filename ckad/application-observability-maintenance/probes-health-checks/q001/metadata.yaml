@@ -1,0 +1,11 @@
+id: ckad-application-observability-probes-q001
+certification: CKAD
+domain: Application Observability and Maintenance
+domain_weight: 15
+topic: Implement probes and health checks
+difficulty: easy
+time_target: 5m
+type: performance
+scope: namespace
+namespace: ckad-q001
+destructive: false
