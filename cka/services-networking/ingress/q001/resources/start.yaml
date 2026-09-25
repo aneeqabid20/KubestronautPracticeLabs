@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata: {name: kpl-nginx}
+spec: {controller: example.com/kpl-ingress}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: web, namespace: cka-net-q010}
+spec:
+  selector: {app: web}
+  ports: [{port: 80, targetPort: 80}]
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: {name: web, namespace: cka-net-q010}
+spec:
+  ingressClassName: kpl-nginx
+  rules:
+    - host: web.kpl.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: wrong-service
+                port: {number: 80}

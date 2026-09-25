@@ -1,0 +1,11 @@
+id: cka-networking-services-q001
+certification: CKA
+domain: Services & Networking
+domain_weight: 20
+topic: Use ClusterIP, NodePort, LoadBalancer service types and endpoints
+difficulty: easy
+time_target: 5m
+type: performance
+scope: namespace
+namespace: cka-net-q005
+destructive: false

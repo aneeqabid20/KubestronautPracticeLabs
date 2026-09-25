@@ -1,0 +1,7 @@
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+kubernetesVersion: v1.34.0
+controlPlaneEndpoint: wrong-control-plane:7443
+networking:
+  podSubnet: 10.200.0.0/16
+  serviceSubnet: 10.200.0.0/12

@@ -1,0 +1,11 @@
+id: cka-cluster-helm-kustomize-q002
+certification: CKA
+domain: Cluster Architecture, Installation & Configuration
+domain_weight: 25
+topic: Use Helm and Kustomize to install cluster components
+difficulty: medium
+time_target: 8m
+type: performance
+scope: namespace
+namespace: cka-ca-q011
+destructive: false

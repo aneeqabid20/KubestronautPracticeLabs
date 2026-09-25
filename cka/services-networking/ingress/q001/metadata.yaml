@@ -1,0 +1,10 @@
+id: cka-networking-ingress-q001
+certification: CKA
+domain: Services & Networking
+domain_weight: 20
+topic: Know how to use Ingress controllers and Ingress resources
+difficulty: easy
+time_target: 6m
+type: performance
+scope: cluster
+destructive: false

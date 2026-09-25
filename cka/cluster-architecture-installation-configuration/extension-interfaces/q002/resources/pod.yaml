@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: net-test
+  namespace: cka-ca-q013
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: k8slab-node02
+  containers:
+    - name: app
+      image: nginx:1.27-alpine

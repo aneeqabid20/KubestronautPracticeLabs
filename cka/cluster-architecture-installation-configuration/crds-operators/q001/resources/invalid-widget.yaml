@@ -1,0 +1,7 @@
+apiVersion: kpl.example/v1
+kind: Widget
+metadata:
+  name: demo
+  namespace: cka-ca-q014
+spec:
+  size: large

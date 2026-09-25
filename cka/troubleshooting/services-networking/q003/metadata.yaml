@@ -1,0 +1,11 @@
+id: cka-troubleshooting-services-networking-q003
+certification: CKA
+domain: Troubleshooting
+domain_weight: 30
+topic: Troubleshoot services and networking
+difficulty: medium
+time_target: 8m
+type: performance
+scope: namespace
+namespace: cka-tr-q011
+destructive: false

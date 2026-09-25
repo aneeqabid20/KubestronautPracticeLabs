@@ -1,0 +1,11 @@
+id: cka-workloads-autoscaling-q002
+certification: CKA
+domain: Workloads & Scheduling
+domain_weight: 15
+topic: Configure workload autoscaling
+difficulty: medium
+time_target: 6m
+type: performance
+scope: namespace
+namespace: cka-ws-q006
+destructive: false

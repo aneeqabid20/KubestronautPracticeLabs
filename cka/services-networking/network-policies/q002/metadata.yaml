@@ -1,0 +1,10 @@
+id: cka-networking-networkpolicy-q002
+certification: CKA
+domain: Services & Networking
+domain_weight: 20
+topic: Define and enforce Network Policies
+difficulty: hard
+time_target: 10m
+type: performance
+scope: cluster
+destructive: false

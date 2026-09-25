@@ -1,0 +1,10 @@
+id: cka-storage-pv-pvc-q002
+certification: CKA
+domain: Storage
+domain_weight: 10
+topic: Manage persistent volumes and persistent volume claims
+difficulty: medium
+time_target: 7m
+type: performance
+scope: cluster
+destructive: false

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: cka-ws-q007
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: web}
+  template:
+    metadata:
+      labels: {app: web}
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27-alpine
+          livenessProbe:
+            httpGet: {path: /not-there, port: 80}
+            initialDelaySeconds: 1
+            periodSeconds: 2
+            failureThreshold: 2

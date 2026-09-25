@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: processor
+  namespace: cka-tr-q005
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: processor}
+  template:
+    metadata:
+      labels: {app: processor}
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27-alpine
+          resources:
+            requests:
+              cpu: "100"
+              memory: 100Gi

@@ -1,0 +1,11 @@
+id: cka-troubleshooting-cluster-components-q002
+certification: CKA
+domain: Troubleshooting
+domain_weight: 30
+topic: Troubleshoot cluster components
+difficulty: medium
+time_target: 8m
+type: performance
+scope: cluster
+target_component: kube-controller-manager
+destructive: false

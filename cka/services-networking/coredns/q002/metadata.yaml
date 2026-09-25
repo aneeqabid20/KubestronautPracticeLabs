@@ -1,0 +1,11 @@
+id: cka-networking-coredns-q002
+certification: CKA
+domain: Services & Networking
+domain_weight: 20
+topic: Understand and use CoreDNS
+difficulty: medium
+time_target: 6m
+type: performance
+scope: namespace
+namespace: cka-net-q013
+destructive: false

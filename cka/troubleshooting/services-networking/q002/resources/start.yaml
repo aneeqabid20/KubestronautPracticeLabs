@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: cka-tr-q010
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: web}
+  template:
+    metadata:
+      labels: {app: web}
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27-alpine
+          ports: [{containerPort: 80}]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: cka-tr-q010
+spec:
+  selector: {app: web}
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tester
+  namespace: cka-tr-q010
+spec:
+  containers:
+    - name: tester
+      image: busybox:1.36.1
+      command: ["sh","-c","sleep 3600"]

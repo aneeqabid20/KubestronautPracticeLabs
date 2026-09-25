@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  namespace: cka-ws-q002
+spec:
+  replicas: 4
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels: {app: api}
+  template:
+    metadata:
+      labels: {app: api}
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27-alpine

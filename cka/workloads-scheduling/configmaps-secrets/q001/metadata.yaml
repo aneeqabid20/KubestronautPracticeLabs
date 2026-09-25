@@ -1,0 +1,11 @@
+id: cka-workloads-config-q001
+certification: CKA
+domain: Workloads & Scheduling
+domain_weight: 15
+topic: Use ConfigMaps and Secrets to configure applications
+difficulty: easy
+time_target: 5m
+type: performance
+scope: namespace
+namespace: cka-ws-q003
+destructive: false

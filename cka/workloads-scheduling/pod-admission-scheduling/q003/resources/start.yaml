@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: memory-policy
+  namespace: cka-ws-q011
+spec:
+  limits:
+    - type: Container
+      max:
+        memory: 128Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memory-app
+  namespace: cka-ws-q011
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: memory-app}
+  template:
+    metadata:
+      labels: {app: memory-app}
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27-alpine
+          resources:
+            requests:
+              memory: 64Mi
+            limits:
+              memory: 512Mi

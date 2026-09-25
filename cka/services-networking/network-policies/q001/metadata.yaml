@@ -1,0 +1,11 @@
+id: cka-networking-networkpolicy-q001
+certification: CKA
+domain: Services & Networking
+domain_weight: 20
+topic: Define and enforce Network Policies
+difficulty: medium
+time_target: 8m
+type: performance
+scope: namespace
+namespace: cka-net-q003
+destructive: false

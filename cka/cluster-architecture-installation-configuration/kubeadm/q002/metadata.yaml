@@ -1,0 +1,10 @@
+id: cka-cluster-kubeadm-q002
+certification: CKA
+domain: Cluster Architecture, Installation & Configuration
+domain_weight: 25
+topic: Create and manage Kubernetes clusters using kubeadm
+difficulty: medium
+time_target: 8m
+type: performance
+scope: cluster
+destructive: false

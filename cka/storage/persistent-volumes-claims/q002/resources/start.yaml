@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cka-storage-q006
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: media
+  namespace: cka-storage-q006
+spec:
+  storageClassName: media-static
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 2Gi

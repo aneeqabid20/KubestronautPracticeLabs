@@ -1,0 +1,11 @@
+id: cka-workloads-scheduling-q003
+certification: CKA
+domain: Workloads & Scheduling
+domain_weight: 15
+topic: Configure Pod admission and scheduling (limits, node affinity, etc.)
+difficulty: medium
+time_target: 7m
+type: performance
+scope: namespace
+namespace: cka-ws-q011
+destructive: false

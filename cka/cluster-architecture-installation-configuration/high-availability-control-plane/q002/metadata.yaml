@@ -1,0 +1,10 @@
+id: cka-cluster-architecture-ha-q002
+certification: CKA
+domain: Cluster Architecture, Installation & Configuration
+domain_weight: 25
+topic: Implement and configure a highly-available control plane
+difficulty: medium
+time_target: 7m
+type: performance
+scope: node
+destructive: false

@@ -1,0 +1,10 @@
+id: cka-cluster-crd-operators-q002
+certification: CKA
+domain: Cluster Architecture, Installation & Configuration
+domain_weight: 25
+topic: Understand CRDs, install and configure operators
+difficulty: medium
+time_target: 8m
+type: performance
+scope: cluster
+destructive: false

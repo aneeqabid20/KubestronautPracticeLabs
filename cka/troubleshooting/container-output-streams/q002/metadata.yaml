@@ -1,0 +1,11 @@
+id: cka-troubleshooting-container-output-q002
+certification: CKA
+domain: Troubleshooting
+domain_weight: 30
+topic: Manage and evaluate container output streams
+difficulty: medium
+time_target: 7m
+type: performance
+scope: namespace
+namespace: cka-tr-q008
+destructive: false

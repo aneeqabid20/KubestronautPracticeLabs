@@ -1,0 +1,11 @@
+id: cka-networking-gateway-q001
+certification: CKA
+domain: Services & Networking
+domain_weight: 20
+topic: Use the Gateway API to manage Ingress traffic
+difficulty: medium
+time_target: 8m
+type: performance
+scope: cluster
+destructive: false
+requires: Gateway API Standard CRDs

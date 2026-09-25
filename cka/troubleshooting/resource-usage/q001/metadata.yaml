@@ -1,0 +1,11 @@
+id: cka-troubleshooting-resource-usage-q001
+certification: CKA
+domain: Troubleshooting
+domain_weight: 30
+topic: Monitor cluster and application resource usage
+difficulty: medium
+time_target: 6m
+type: performance
+scope: namespace
+namespace: cka-tr-q005
+destructive: false

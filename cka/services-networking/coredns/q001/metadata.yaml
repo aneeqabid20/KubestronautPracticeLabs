@@ -1,0 +1,11 @@
+id: cka-networking-coredns-q001
+certification: CKA
+domain: Services & Networking
+domain_weight: 20
+topic: Understand and use CoreDNS
+difficulty: hard
+time_target: 10m
+type: performance
+scope: cluster
+destructive: true
+recovery: coredns-corefile-backup

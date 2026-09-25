@@ -1,0 +1,11 @@
+id: cka-workloads-self-healing-q001
+certification: CKA
+domain: Workloads & Scheduling
+domain_weight: 15
+topic: Understand the primitives used to create robust, self-healing, application deployments
+difficulty: easy
+time_target: 5m
+type: performance
+scope: namespace
+namespace: cka-ws-q007
+destructive: false

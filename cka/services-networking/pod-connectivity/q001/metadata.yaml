@@ -1,0 +1,11 @@
+id: cka-networking-pod-connectivity-q001
+certification: CKA
+domain: Services & Networking
+domain_weight: 20
+topic: Understand connectivity between Pods
+difficulty: medium
+time_target: 7m
+type: performance
+scope: namespace
+namespace: cka-net-q001
+destructive: false

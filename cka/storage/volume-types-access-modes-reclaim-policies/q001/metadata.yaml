@@ -1,0 +1,10 @@
+id: cka-storage-volume-policy-q001
+certification: CKA
+domain: Storage
+domain_weight: 10
+topic: Configure volume types, access modes and reclaim policies
+difficulty: medium
+time_target: 6m
+type: performance
+scope: cluster
+destructive: false

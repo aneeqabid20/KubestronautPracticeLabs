@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: worker
+  namespace: cka-tr-q007
+spec:
+  restartPolicy: Always
+  containers:
+    - name: worker
+      image: busybox:1.36.1
+      env:
+        - name: MODE
+          value: broken
+      command:
+        - sh
+        - -c
+        - |
+          if [ "$MODE" != "production" ]; then
+            echo "ERROR: MODE must be production" >&2
+            exit 1
+          fi
+          echo "worker started"
+          sleep 3600

@@ -86,7 +86,6 @@ cmd_reset() {
   qdir="$(resolve_challenge "$1")"
 
   require_command kubectl
-  require_cluster_access
 
   run_challenge_script "$qdir" reset.sh
   success "Challenge reset complete."

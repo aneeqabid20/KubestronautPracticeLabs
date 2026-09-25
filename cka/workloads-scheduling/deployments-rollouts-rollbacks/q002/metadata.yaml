@@ -1,0 +1,11 @@
+id: cka-workloads-deployments-q002
+certification: CKA
+domain: Workloads & Scheduling
+domain_weight: 15
+topic: Understand application deployments and how to perform rolling update and rollbacks
+difficulty: medium
+time_target: 6m
+type: performance
+scope: namespace
+namespace: cka-ws-q002
+destructive: false

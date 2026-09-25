@@ -1,0 +1,10 @@
+id: cka-cluster-rbac-q002
+certification: CKA
+domain: Cluster Architecture, Installation & Configuration
+domain_weight: 25
+topic: Manage role based access control (RBAC)
+difficulty: medium
+time_target: 7m
+type: performance
+scope: cluster
+destructive: false

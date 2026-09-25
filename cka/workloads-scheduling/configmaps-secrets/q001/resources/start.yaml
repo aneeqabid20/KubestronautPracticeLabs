@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: cka-ws-q003
+data:
+  message: hello
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greeter
+  namespace: cka-ws-q003
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app: greeter}
+  template:
+    metadata:
+      labels: {app: greeter}
+    spec:
+      containers:
+        - name: app
+          image: busybox:1.36.1
+          command: ["sh","-c","echo $MESSAGE; sleep 3600"]
+          env:
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: msg

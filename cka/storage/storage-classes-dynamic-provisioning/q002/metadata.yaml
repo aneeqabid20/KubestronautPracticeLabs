@@ -1,0 +1,10 @@
+id: cka-storage-storage-classes-q002
+certification: CKA
+domain: Storage
+domain_weight: 10
+topic: Implement storage classes and dynamic volume provisioning
+difficulty: medium
+time_target: 8m
+type: performance
+scope: cluster
+destructive: false

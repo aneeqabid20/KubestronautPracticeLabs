@@ -1,0 +1,12 @@
+id: cka-cluster-extensions-q002
+certification: CKA
+domain: Cluster Architecture, Installation & Configuration
+domain_weight: 25
+topic: Understand extension interfaces (CNI, CSI, CRI, etc.)
+difficulty: hard
+time_target: 10m
+type: performance
+scope: node
+target_node: k8slab-node02
+destructive: true
+recovery: cni-config-backup

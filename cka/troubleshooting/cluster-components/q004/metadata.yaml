@@ -1,0 +1,12 @@
+id: cka-troubleshooting-cluster-components-q004
+certification: CKA
+domain: Troubleshooting
+domain_weight: 30
+topic: Troubleshoot cluster components
+difficulty: hard
+time_target: 10m
+type: performance
+scope: cluster
+target_component: etcd
+destructive: true
+recovery: local-static-pod-manifest

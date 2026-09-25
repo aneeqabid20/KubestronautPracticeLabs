@@ -1,0 +1,11 @@
+id: cka-cluster-infrastructure-q001
+certification: CKA
+domain: Cluster Architecture, Installation & Configuration
+domain_weight: 25
+topic: Prepare underlying infrastructure for installing a Kubernetes cluster
+difficulty: medium
+time_target: 6m
+type: performance
+scope: node
+target_node: k8slab-node02
+destructive: false
