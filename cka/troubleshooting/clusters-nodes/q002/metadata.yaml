@@ -1,0 +1,21 @@
+id: cka-troubleshooting-clusters-nodes-q002
+certification: CKA
+domain: Troubleshooting
+domain_weight: 30
+topic: Troubleshoot clusters and nodes
+difficulty: medium
+time_target: 7m
+type: performance
+scope: node
+target_node: k8slab-node02
+destructive: false
+
+skills:
+  - kubectl
+  - node-troubleshooting
+  - systemd
+  - kubelet
+  - containerd
+  - crictl
+  - journalctl
+  - ssh
