@@ -110,9 +110,32 @@ for dom,topics in official.items():
         got=actual.get((dom,topic),0)
         if got!=count: errors.append(f"{dom} / {topic}: expected {count}, got {got}")
 
-patch=(ROOT/"patches/practice-reset-api-recovery.patch")
-if not patch.exists() or "-  require_cluster_access" not in patch.read_text():
-    errors.append("practice reset API-recovery patch missing/incorrect")
+practice_path = ROOT / "practice"
+if not practice_path.exists():
+    errors.append("practice CLI missing")
+else:
+    practice_text = practice_path.read_text()
+
+    match = re.search(
+        r"cmd_reset\(\)\s*\{(?P<body>.*?)^\}",
+        practice_text,
+        re.MULTILINE | re.DOTALL,
+    )
+
+    if not match:
+        errors.append("practice cmd_reset function not found")
+    else:
+        reset_body = match.group("body")
+
+        if "require_cluster_access" in reset_body:
+            errors.append(
+                "practice cmd_reset incorrectly requires Kubernetes API access"
+            )
+
+        if 'run_challenge_script "$qdir" reset.sh' not in reset_body:
+            errors.append(
+                "practice cmd_reset does not delegate recovery to challenge reset.sh"
+            )
 if not (ROOT/"lib/dependencies.sh").exists(): errors.append("lib/dependencies.sh missing")
 if not (ROOT/"dependencies/local-path-provisioner.yaml").exists(): errors.append("local-path provisioner manifest missing")
 deps=(ROOT/"lib/dependencies.sh").read_text()

@@ -1,83 +1,131 @@
-# CKA Artifact Validation Report
+# CKA Validation Report
 
 Validation date: 2026-09-25
 
-## Research baseline
+## Current official baseline
 
-The bank was mapped against the current Linux Foundation CKA page:
+The CKA bank is mapped against the current Linux Foundation CKA curriculum.
 
-- https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/
-- Exam baseline: Kubernetes v1.35
-- Domain weights: Storage 10%, Troubleshooting 30%, Workloads & Scheduling 15%,
-  Cluster Architecture / Installation / Configuration 25%, Services & Networking 20%.
+- Kubernetes exam baseline: **v1.35**
+- Storage: **10%**
+- Troubleshooting: **30%**
+- Workloads & Scheduling: **15%**
+- Cluster Architecture, Installation & Configuration: **25%**
+- Services & Networking: **20%**
+- Official competencies represented: **27**
+- Repository CKA labs: **62**
 
-Supporting implementation references used during design include:
+Official source:
 
-- kubeadm upgrade v1.35:
-  https://v1-35.docs.kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-upgrade/
-- kubeadm HA:
-  https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/
-- StorageClasses:
-  https://kubernetes.io/docs/concepts/storage/storage-classes/
-- PersistentVolumes:
-  https://kubernetes.io/docs/concepts/storage/persistent-volumes/
-- Services and networking:
-  https://v1-35.docs.kubernetes.io/docs/concepts/services-networking/
-- Gateway API releases:
-  https://github.com/kubernetes-sigs/gateway-api/releases
-- Local Path Provisioner releases:
-  https://github.com/rancher/local-path-provisioner/releases
+https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/
 
-## Validation cycle 1
+## Repository-level validation
 
-The first full audit checked:
+The complete merged bank currently passes the repository validator:
 
-- official domain/topic mapping;
-- required question file contract;
-- metadata parsing and unique IDs;
-- Bash syntax for setup/verify/reset scripts;
-- executable permissions;
-- YAML resources;
-- Windows/PowerShell dependency leakage;
-- destructive command patterns;
-- reset/recovery coverage;
-- CLI discovery against the Stage 1 `./practice` command.
+```text
+Validated 62 CKA labs
+Unique IDs: 62
+Official competencies covered: 27
+Warnings: 0
+RESULT: PASS
+```
 
-Corrections made during this cycle:
+Checks include:
 
-1. Completed the HA control-plane competency with a second independent lab.
-2. Confirmed and pinned Gateway API Standard CRDs to current release `v1.6.2`.
-3. Confirmed Local Path Provisioner `v0.0.36` as the current release used by
-   the bundled storage dependency.
-4. Updated validation logic so Helm templates are rendered/treated as templates
-   rather than incorrectly parsed as plain YAML.
-5. Confirmed the API-down recovery patch is required for kube-apiserver/etcd labs.
+- official domain/topic mapping
+- required question file contract
+- unique IDs
+- Bash syntax for setup/verify/reset scripts
+- executable-question structure
+- metadata structure
+- selected YAML/resource validation
+- Windows/PowerShell dependency leakage
+- unsafe/destructive command-pattern checks
+- recovery/reset presence
+- CLI discovery
 
-## Validation cycle 2
+`./practice list cka | wc -l` returns:
 
-A clean Stage 1 repository was reconstructed, the complete overlay was copied in,
-and the reset-recovery patch was applied.
+```text
+62
+```
 
-Results:
+## Live-environment preflight
 
-- pending CKA labs discovered by `./practice list cka`: **57**
-- pending official competencies covered: **26 / 26**
-- unique question IDs: **57**
-- setup/verify/reset scripts syntax checked: **171**
-- static validator warnings: **0**
-- static validator errors: **0**
-- CLI discovery: **PASS**
-- framework patch application: **PASS**
+Latest captured preflight from the target WSL2/kubeadm lab:
 
-The five already validated `clusters-nodes` questions are intentionally not
-duplicated by this overlay. After merging with the existing repository, the
-planned CKA bank contains **62 performance labs**.
+```text
+PASS=18 WARN=1 FAIL=0
+```
+
+The warning was:
+
+```text
+helm missing; Helm topic q001 requires it
+```
+
+All core cluster checks passed, including:
+
+- Kubernetes API connectivity
+- expected three nodes
+- control-plane filesystem
+- controller-to-node01 passwordless administrative SSH
+- controller-to-node02 passwordless administrative SSH
+- kubeadm
+- crictl
+- openssl
+- standard shell utilities
+
+Re-run `./tools/preflight-cka.sh` after installing Helm to refresh this status.
+
+## Runtime validation status
+
+Runtime validation is stricter than static validation.
+
+Confirmed end-to-end on the target cluster:
+
+```text
+cka/troubleshooting/clusters-nodes/q001
+cka/troubleshooting/clusters-nodes/q002
+cka/troubleshooting/clusters-nodes/q003
+cka/troubleshooting/clusters-nodes/q004
+cka/troubleshooting/clusters-nodes/q005
+```
+
+For these labs the full lifecycle has been exercised:
+
+```text
+setup → intended failure → manual repair → verify → reset
+```
+
+The remaining CKA questions have passed static/repository validation but should
+still be executed on the real lab before a stable release tag is created.
+
+## Release criterion
+
+A lab should be considered runtime-validated only after confirming:
+
+1. healthy baseline before setup;
+2. `setup.sh` exits successfully;
+3. the advertised starting/broken state actually exists;
+4. `question.md` accurately describes the observable task without leaking the root cause;
+5. the intended solution repairs the scenario;
+6. `verify.sh` accepts the corrected state;
+7. `reset.sh` restores the baseline;
+8. the challenge can be set up again after reset.
 
 ## Important limitation
 
-This validation is a research, structural, syntax, safety and clean-repository
-integration validation performed outside the user's live Kubernetes cluster.
-Every scenario should still be runtime-validated on the actual WSL2 kubeadm lab
-before the entire bank is tagged as a stable release. Cluster-specific variables
-such as image availability, Helm presence, Cilium behavior, and node timing can
-only be conclusively validated in that environment.
+Static validation cannot conclusively test timing-sensitive or environment-specific
+behavior such as:
+
+- static Pod restart timing
+- etcd/API-server recovery timing
+- Cilium enforcement behavior
+- image availability
+- Helm availability
+- storage provisioner behavior
+- Gateway/Ingress controller availability
+
+Those require the target Kubernetes environment.

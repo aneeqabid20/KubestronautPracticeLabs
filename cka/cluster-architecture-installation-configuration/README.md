@@ -1,5 +1,14 @@
 # CKA Cluster Architecture, Installation & Configuration — 25%
 
-This bank covers all eight official competencies with 15 labs.
-Some exercises operate directly on kubeadm control-plane or worker nodes and
-therefore require the infrastructure lab's passwordless SSH/sudo.
+16 performance labs covering all 8 official competencies:
+
+- Manage RBAC — 2 labs
+- Prepare infrastructure for Kubernetes installation — 2 labs
+- Create and manage clusters using kubeadm — 2 labs
+- Manage the Kubernetes cluster lifecycle — 2 labs
+- Implement/configure a highly available control plane — 2 labs
+- Use Helm and Kustomize — 2 labs
+- Understand CNI, CSI and CRI extension interfaces — 2 labs
+- Understand CRDs and operators — 2 labs
+
+Several scenarios require direct access to control-plane or worker Linux nodes.

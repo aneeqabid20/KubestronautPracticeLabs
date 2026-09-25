@@ -1,22 +1,30 @@
 # Official Curriculum Mapping
 
-Source of truth: Linux Foundation certification pages, checked 2026-09-24.
+Research date: **2026-09-25**
 
-The directory hierarchy follows:
+Source of truth: Linux Foundation certification pages.
 
-`certification / official-domain / official-competency-topic / question`
+The repository hierarchy follows:
 
-The repository should be reviewed whenever Linux Foundation changes domains,
+```text
+certification / official-domain / official-competency-topic / question
+```
+
+The mapping should be reviewed whenever Linux Foundation changes domains,
 weights, competencies, or the Kubernetes exam version.
 
 ## CKA — Kubernetes v1.35
 
+Current repository status: **62 labs covering all 27 listed competencies**.
+
 ### Storage — 10%
+
 - Implement storage classes and dynamic volume provisioning
 - Configure volume types, access modes and reclaim policies
 - Manage persistent volumes and persistent volume claims
 
 ### Troubleshooting — 30%
+
 - Troubleshoot clusters and nodes
 - Troubleshoot cluster components
 - Monitor cluster and application resource usage
@@ -24,13 +32,15 @@ weights, competencies, or the Kubernetes exam version.
 - Troubleshoot services and networking
 
 ### Workloads & Scheduling — 15%
+
 - Understand application deployments and how to perform rolling update and rollbacks
 - Use ConfigMaps and Secrets to configure applications
 - Configure workload autoscaling
 - Understand the primitives used to create robust, self-healing application deployments
-- Configure Pod admission and scheduling
+- Configure Pod admission and scheduling (limits, node affinity, etc.)
 
 ### Cluster Architecture, Installation & Configuration — 25%
+
 - Manage role based access control (RBAC)
 - Prepare underlying infrastructure for installing a Kubernetes cluster
 - Create and manage Kubernetes clusters using kubeadm
@@ -41,6 +51,7 @@ weights, competencies, or the Kubernetes exam version.
 - Understand CRDs, install and configure operators
 
 ### Services & Networking — 20%
+
 - Understand connectivity between Pods
 - Define and enforce Network Policies
 - Use ClusterIP, NodePort, LoadBalancer service types and endpoints
@@ -48,21 +59,29 @@ weights, competencies, or the Kubernetes exam version.
 - Know how to use Ingress controllers and Ingress resources
 - Understand and use CoreDNS
 
+Official source:
+https://training.linuxfoundation.org/certification/certified-kubernetes-administrator-cka/
+
 ## CKAD — Kubernetes v1.35
 
+Current repository status: framework/sample content only; full CKAD bank not yet built.
+
 ### Application Design and Build — 20%
+
 - Define, build and modify container images
-- Choose and use the right workload resource
+- Choose and use the right workload resource (Deployment, DaemonSet, CronJob, etc.)
 - Understand multi-container Pod design patterns
 - Utilize persistent and ephemeral volumes
 
 ### Application Deployment — 20%
-- Implement common deployment strategies
-- Understand Deployments and rolling updates
-- Use Helm to deploy existing packages
+
+- Use Kubernetes primitives to implement common deployment strategies
+- Understand Deployments and how to perform rolling updates
+- Use the Helm package manager to deploy existing packages
 - Kustomize
 
 ### Application Observability and Maintenance — 15%
+
 - Understand API deprecations
 - Implement probes and health checks
 - Use built-in CLI tools to monitor Kubernetes applications
@@ -70,6 +89,7 @@ weights, competencies, or the Kubernetes exam version.
 - Debugging in Kubernetes
 
 ### Application Environment, Configuration and Security — 25%
+
 - Discover and use resources that extend Kubernetes
 - Understand authentication, authorization and admission control
 - Understand requests, limits and quotas
@@ -80,46 +100,61 @@ weights, competencies, or the Kubernetes exam version.
 - Understand Application Security
 
 ### Services and Networking — 20%
+
 - Demonstrate basic understanding of NetworkPolicies
 - Provide and troubleshoot access to applications via Services
 - Use Ingress rules to expose applications
 
+Official source:
+https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/
+
 ## CKS — Kubernetes v1.35
 
+Current repository status: topic hierarchy only; full CKS bank not yet built.
+
 ### Cluster Setup — 15%
-- Network security policies
-- CIS benchmark review of Kubernetes components
-- Ingress with TLS
+
+- Use Network security policies to restrict cluster-level access
+- Use CIS benchmark to review Kubernetes component security
+- Properly set up Ingress with TLS
 - Protect node metadata and endpoints
-- Verify platform binaries
+- Verify platform binaries before deploying
 
 ### Cluster Hardening — 15%
-- RBAC
-- Service account security
-- Restrict access to Kubernetes API
+
+- Use RBAC to minimize exposure
+- Exercise caution with service accounts and minimize permissions
+- Restrict access to the Kubernetes API
 - Upgrade Kubernetes to avoid vulnerabilities
 
 ### System Hardening — 10%
+
 - Minimize host OS footprint
-- Least-privilege identity and access management
+- Use least-privilege identity and access management
 - Minimize external network access
-- Kernel hardening tools such as AppArmor and seccomp
+- Appropriately use AppArmor and seccomp
 
 ### Minimize Microservice Vulnerabilities — 20%
-- Pod Security Standards
-- Kubernetes Secrets
-- Isolation techniques
-- Pod-to-Pod encryption
+
+- Use appropriate Pod Security Standards
+- Manage Kubernetes Secrets
+- Understand and implement isolation techniques
+- Implement Pod-to-Pod encryption
 
 ### Supply Chain Security — 20%
+
 - Minimize base image footprint
 - Understand the software supply chain
 - Secure registries and validate artifacts
-- Static analysis of workloads and images
+- Perform static analysis of workloads and images
 
 ### Monitoring, Logging and Runtime Security — 20%
-- Behavioral analytics
-- Threat detection
-- Attack investigation
-- Runtime container immutability
-- Kubernetes audit logs
+
+- Perform behavioral analytics
+- Detect threats
+- Investigate phases of attack and bad actors
+- Ensure runtime container immutability
+- Use Kubernetes audit logs
+
+Official source:
+https://training.linuxfoundation.org/certification/certified-kubernetes-security-specialist/

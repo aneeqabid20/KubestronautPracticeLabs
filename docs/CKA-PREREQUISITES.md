@@ -1,53 +1,81 @@
 # CKA Lab Prerequisites
 
-Baseline lab expected by this CKA bank:
+The current CKA bank targets a kubeadm-based Kubernetes v1.35.x lab.
 
-- kubeadm cluster, Kubernetes v1.35.x
-- control plane node: `k8slab-controller.k8slab.local`
-- workers: `k8slab-node01`, `k8slab-node02`
-- control plane is schedulable (as in the existing lab)
-- container runtime: containerd
-- CNI: Cilium with Kubernetes NetworkPolicy enforcement
-- controller can SSH non-interactively to workers as `ubuntu`
-- passwordless sudo is available where node/control-plane changes are required
-- `kubectl`, `kubeadm`, `crictl`, `systemctl`, `journalctl`, `ssh`, `sed`, `awk`,
-  `grep` and standard GNU/Linux tools are available
-- `helm` is required only for the Helm question
-- `openssl` is required only for the TLS Ingress question
+Reference environment:
+
+```text
+k8slab-controller.k8slab.local   control-plane + schedulable worker
+k8slab-node01                    worker
+k8slab-node02                    worker
+```
+
+Core assumptions:
+
+- kubeadm
+- Kubernetes v1.35.x
+- containerd
+- systemd
+- Cilium with NetworkPolicy enforcement
+- working cluster DNS
+- controller-to-worker passwordless SSH
+- passwordless sudo where node/control-plane changes are required
+- `kubectl`, `kubeadm`, `crictl`, `ssh`, `journalctl`, `systemctl`
+- common GNU/Linux tools (`sed`, `awk`, `grep`, etc.)
+
+## Additional tools
+
+Some labs require:
+
+- `helm` — Helm competency
+- `openssl` — TLS Ingress scenario
+
+Run:
+
+```bash
+./tools/preflight-cka.sh
+```
+
+before runtime validation.
 
 ## Shared dependencies
 
 ### Storage
 
-StorageClass dynamic-provisioning questions use a repository-owned local-path
-provisioner installed into namespace `kpl-storage-system`. The shared StorageClass
-is `kpl-local-path`.
+Dynamic-provisioning labs use a repository-managed Local Path Provisioner in:
 
-The provisioner is deliberately retained between questions because it is lab
-infrastructure, not question state.
+```text
+namespace: kpl-storage-system
+StorageClass: kpl-local-path
+```
+
+The provisioner is treated as shared practice infrastructure and may remain
+installed between questions.
 
 ### Gateway API
 
-Gateway API questions install the Standard Gateway API CRDs at pinned release
-`v1.6.2` if they are not already installed. They validate API resource
-configuration and do not assume a Gateway controller/data plane.
+Gateway API labs can install the pinned Standard Gateway API CRDs.
 
-## Deliberately disruptive labs
+They primarily validate Gateway API object configuration and do not assume a
+specific Gateway controller/data plane unless the question explicitly provisions one.
 
-The following labs intentionally affect cluster-wide operation and include an
-explicit reset/recovery path:
+## Disruptive labs
 
-- Troubleshooting / cluster-components q003 — kube-apiserver
-- Troubleshooting / cluster-components q004 — etcd
-- Cluster Architecture / extension-interfaces q002 — worker CNI config
-- Services & Networking / CoreDNS q001 — cluster DNS
+Some scenarios intentionally affect shared operation, including:
 
-Do not run multiple practice questions concurrently.
+- kube-apiserver
+- etcd
+- kubelet/containerd
+- CNI configuration
+- CoreDNS
 
-## Single-control-plane limitation
+Do not run multiple disruptive labs concurrently.
 
-The HA control-plane lab is a kubeadm configuration task. A three-node worker lab
-with one real control-plane node cannot safely simulate a full HA control plane
-without changing the infrastructure design. The task therefore tests the
-`controlPlaneEndpoint`, networking and local-etcd configuration that is relevant
-when preparing a kubeadm HA configuration.
+## HA limitation of the reference lab
+
+The reference environment has one actual control-plane node.
+
+High-availability questions therefore focus on kubeadm HA configuration skills
+that can be exercised safely in this lab. They should not claim to create a
+production-equivalent multi-control-plane topology when the underlying
+infrastructure does not provide one.

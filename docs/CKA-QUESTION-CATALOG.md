@@ -1,16 +1,28 @@
 # CKA Question Catalog
 
-Research baseline: Linux Foundation CKA curriculum checked 2026-09-25.
-Target exam version: Kubernetes v1.35.
+Research baseline: Linux Foundation CKA curriculum checked **2026-09-25**.
 
-This overlay contains **57 pending CKA labs**. Together with the already-validated
-`cka/troubleshooting/clusters-nodes/q001`–`q005`, the repository contains
-**62 CKA labs**.
+Target exam baseline: **Kubernetes v1.35**.
+
+**Total labs: 62**
 
 ## Coverage
 
 | Domain | Official competency | Labs |
 |---|---|---:|
+| Storage | Configure volume types, access modes and reclaim policies | 2 |
+| Storage | Implement storage classes and dynamic volume provisioning | 2 |
+| Storage | Manage persistent volumes and persistent volume claims | 2 |
+| Troubleshooting | Manage and evaluate container output streams | 2 |
+| Troubleshooting | Monitor cluster and application resource usage | 2 |
+| Troubleshooting | Troubleshoot cluster components | 4 |
+| Troubleshooting | Troubleshoot clusters and nodes | 5 |
+| Troubleshooting | Troubleshoot services and networking | 3 |
+| Workloads & Scheduling | Configure Pod admission and scheduling (limits, node affinity, etc.) | 3 |
+| Workloads & Scheduling | Configure workload autoscaling | 2 |
+| Workloads & Scheduling | Understand application deployments and how to perform rolling update and rollbacks | 2 |
+| Workloads & Scheduling | Understand the primitives used to create robust, self-healing, application deployments | 2 |
+| Workloads & Scheduling | Use ConfigMaps and Secrets to configure applications | 2 |
 | Cluster Architecture, Installation & Configuration | Create and manage Kubernetes clusters using kubeadm | 2 |
 | Cluster Architecture, Installation & Configuration | Implement and configure a highly-available control plane | 2 |
 | Cluster Architecture, Installation & Configuration | Manage role based access control (RBAC) | 2 |
@@ -25,21 +37,80 @@ This overlay contains **57 pending CKA labs**. Together with the already-validat
 | Services & Networking | Understand connectivity between Pods | 2 |
 | Services & Networking | Use ClusterIP, NodePort, LoadBalancer service types and endpoints | 3 |
 | Services & Networking | Use the Gateway API to manage Ingress traffic | 2 |
-| Storage | Configure volume types, access modes and reclaim policies | 2 |
-| Storage | Implement storage classes and dynamic volume provisioning | 2 |
-| Storage | Manage persistent volumes and persistent volume claims | 2 |
-| Troubleshooting | Manage and evaluate container output streams | 2 |
-| Troubleshooting | Monitor cluster and application resource usage | 2 |
-| Troubleshooting | Troubleshoot cluster components | 4 |
-| Troubleshooting | Troubleshoot services and networking | 3 |
-| Workloads & Scheduling | Configure Pod admission and scheduling (limits, node affinity, etc.) | 3 |
-| Workloads & Scheduling | Configure workload autoscaling | 2 |
-| Workloads & Scheduling | Understand application deployments and how to perform rolling update and rollbacks | 2 |
-| Workloads & Scheduling | Understand the primitives used to create robust, self-healing, application deployments | 2 |
-| Workloads & Scheduling | Use ConfigMaps and Secrets to configure applications | 2 |
-| Troubleshooting | Troubleshoot clusters and nodes | 5 existing/validated |
 
 ## Included lab paths
+
+### Storage — Configure volume types, access modes and reclaim policies
+
+- `cka/storage/volume-types-access-modes-reclaim-policies/q001` — medium, target 6m
+- `cka/storage/volume-types-access-modes-reclaim-policies/q002` — easy, target 4m
+
+### Storage — Implement storage classes and dynamic volume provisioning
+
+- `cka/storage/storage-classes-dynamic-provisioning/q001` — medium, target 7m
+- `cka/storage/storage-classes-dynamic-provisioning/q002` — medium, target 8m
+
+### Storage — Manage persistent volumes and persistent volume claims
+
+- `cka/storage/persistent-volumes-claims/q001` — medium, target 6m
+- `cka/storage/persistent-volumes-claims/q002` — medium, target 7m
+
+### Troubleshooting — Manage and evaluate container output streams
+
+- `cka/troubleshooting/container-output-streams/q001` — easy, target 5m
+- `cka/troubleshooting/container-output-streams/q002` — medium, target 7m
+
+### Troubleshooting — Monitor cluster and application resource usage
+
+- `cka/troubleshooting/resource-usage/q001` — medium, target 6m
+- `cka/troubleshooting/resource-usage/q002` — medium, target 7m
+
+### Troubleshooting — Troubleshoot cluster components
+
+- `cka/troubleshooting/cluster-components/q001` — medium, target 7m
+- `cka/troubleshooting/cluster-components/q002` — medium, target 8m
+- `cka/troubleshooting/cluster-components/q003` — hard, target 10m
+- `cka/troubleshooting/cluster-components/q004` — hard, target 10m
+
+### Troubleshooting — Troubleshoot clusters and nodes
+
+- `cka/troubleshooting/clusters-nodes/q001` — easy, target 5m
+- `cka/troubleshooting/clusters-nodes/q002` — medium, target 7m
+- `cka/troubleshooting/clusters-nodes/q003` — medium, target 8m
+- `cka/troubleshooting/clusters-nodes/q004` — medium, target 8m
+- `cka/troubleshooting/clusters-nodes/q005` — hard, target 10m
+
+### Troubleshooting — Troubleshoot services and networking
+
+- `cka/troubleshooting/services-networking/q001` — easy, target 5m
+- `cka/troubleshooting/services-networking/q002` — medium, target 6m
+- `cka/troubleshooting/services-networking/q003` — medium, target 8m
+
+### Workloads & Scheduling — Configure Pod admission and scheduling (limits, node affinity, etc.)
+
+- `cka/workloads-scheduling/pod-admission-scheduling/q001` — medium, target 7m
+- `cka/workloads-scheduling/pod-admission-scheduling/q002` — medium, target 7m
+- `cka/workloads-scheduling/pod-admission-scheduling/q003` — medium, target 7m
+
+### Workloads & Scheduling — Configure workload autoscaling
+
+- `cka/workloads-scheduling/workload-autoscaling/q001` — easy, target 5m
+- `cka/workloads-scheduling/workload-autoscaling/q002` — medium, target 6m
+
+### Workloads & Scheduling — Understand application deployments and how to perform rolling update and rollbacks
+
+- `cka/workloads-scheduling/deployments-rollouts-rollbacks/q001` — medium, target 6m
+- `cka/workloads-scheduling/deployments-rollouts-rollbacks/q002` — medium, target 6m
+
+### Workloads & Scheduling — Understand the primitives used to create robust, self-healing, application deployments
+
+- `cka/workloads-scheduling/self-healing-workloads/q001` — easy, target 5m
+- `cka/workloads-scheduling/self-healing-workloads/q002` — medium, target 8m
+
+### Workloads & Scheduling — Use ConfigMaps and Secrets to configure applications
+
+- `cka/workloads-scheduling/configmaps-secrets/q001` — easy, target 5m
+- `cka/workloads-scheduling/configmaps-secrets/q002` — medium, target 6m
 
 ### Cluster Architecture, Installation & Configuration — Create and manage Kubernetes clusters using kubeadm
 
@@ -111,67 +182,3 @@ This overlay contains **57 pending CKA labs**. Together with the already-validat
 
 - `cka/services-networking/gateway-api/q001` — medium, target 8m
 - `cka/services-networking/gateway-api/q002` — medium, target 8m
-
-### Storage — Configure volume types, access modes and reclaim policies
-
-- `cka/storage/volume-types-access-modes-reclaim-policies/q001` — medium, target 6m
-- `cka/storage/volume-types-access-modes-reclaim-policies/q002` — easy, target 4m
-
-### Storage — Implement storage classes and dynamic volume provisioning
-
-- `cka/storage/storage-classes-dynamic-provisioning/q001` — medium, target 7m
-- `cka/storage/storage-classes-dynamic-provisioning/q002` — medium, target 8m
-
-### Storage — Manage persistent volumes and persistent volume claims
-
-- `cka/storage/persistent-volumes-claims/q001` — medium, target 6m
-- `cka/storage/persistent-volumes-claims/q002` — medium, target 7m
-
-### Troubleshooting — Manage and evaluate container output streams
-
-- `cka/troubleshooting/container-output-streams/q001` — easy, target 5m
-- `cka/troubleshooting/container-output-streams/q002` — medium, target 7m
-
-### Troubleshooting — Monitor cluster and application resource usage
-
-- `cka/troubleshooting/resource-usage/q001` — medium, target 6m
-- `cka/troubleshooting/resource-usage/q002` — medium, target 7m
-
-### Troubleshooting — Troubleshoot cluster components
-
-- `cka/troubleshooting/cluster-components/q001` — medium, target 7m
-- `cka/troubleshooting/cluster-components/q002` — medium, target 8m
-- `cka/troubleshooting/cluster-components/q003` — hard, target 10m
-- `cka/troubleshooting/cluster-components/q004` — hard, target 10m
-
-### Troubleshooting — Troubleshoot services and networking
-
-- `cka/troubleshooting/services-networking/q001` — easy, target 5m
-- `cka/troubleshooting/services-networking/q002` — medium, target 6m
-- `cka/troubleshooting/services-networking/q003` — medium, target 8m
-
-### Workloads & Scheduling — Configure Pod admission and scheduling (limits, node affinity, etc.)
-
-- `cka/workloads-scheduling/pod-admission-scheduling/q001` — medium, target 7m
-- `cka/workloads-scheduling/pod-admission-scheduling/q002` — medium, target 7m
-- `cka/workloads-scheduling/pod-admission-scheduling/q003` — medium, target 7m
-
-### Workloads & Scheduling — Configure workload autoscaling
-
-- `cka/workloads-scheduling/workload-autoscaling/q001` — easy, target 5m
-- `cka/workloads-scheduling/workload-autoscaling/q002` — medium, target 6m
-
-### Workloads & Scheduling — Understand application deployments and how to perform rolling update and rollbacks
-
-- `cka/workloads-scheduling/deployments-rollouts-rollbacks/q001` — medium, target 6m
-- `cka/workloads-scheduling/deployments-rollouts-rollbacks/q002` — medium, target 6m
-
-### Workloads & Scheduling — Understand the primitives used to create robust, self-healing, application deployments
-
-- `cka/workloads-scheduling/self-healing-workloads/q001` — easy, target 5m
-- `cka/workloads-scheduling/self-healing-workloads/q002` — medium, target 8m
-
-### Workloads & Scheduling — Use ConfigMaps and Secrets to configure applications
-
-- `cka/workloads-scheduling/configmaps-secrets/q001` — easy, target 5m
-- `cka/workloads-scheduling/configmaps-secrets/q002` — medium, target 6m

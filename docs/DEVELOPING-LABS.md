@@ -1,21 +1,53 @@
 # Developing Labs
 
-Workflow:
+## Design workflow
 
-1. Pick one certification.
-2. Pick one official domain.
-3. Pick one official competency/topic.
-4. Design a small set of realistic performance scenarios.
-5. Implement one question.
-6. Run setup.
-7. Solve manually.
-8. Run verify.
-9. Run reset.
-10. Repeat setup to prove determinism.
-11. Commit.
-12. Move to the next question.
+1. Confirm the current official certification curriculum.
+2. Select one official domain.
+3. Select one official competency.
+4. Design scenarios that test distinct skills rather than repetitive variants.
+5. Implement the question contract.
+6. Run static validation.
+7. Runtime-test the lab on the target cluster.
+8. Confirm reset and repeatability.
+9. Commit only after validation.
 
-Do not bulk-generate a large question bank.
+## Question quality rules
 
-Question wording should state the observable problem and required end state without
-revealing the root cause unless the task itself requires a specific configuration.
+Prefer tasks that require the learner to:
+
+- inspect current state;
+- identify evidence;
+- make a targeted change;
+- validate the outcome.
+
+Avoid trivia questions or failures whose answer is exposed directly in the
+candidate-visible wording.
+
+## Runtime validation standard
+
+Every question should eventually pass:
+
+```text
+healthy baseline
+→ setup
+→ intended start/broken state
+→ manual solve
+→ verify
+→ reset
+→ healthy baseline
+→ setup again
+```
+
+For cluster-wide/destructive questions, explicitly test the emergency reset path
+without solving the scenario first.
+
+## Certification maintenance
+
+Whenever Linux Foundation changes an exam:
+
+1. update `docs/CURRICULUM.md`;
+2. review the directory taxonomy;
+3. identify obsolete/missing competencies;
+4. update question metadata and coverage documents;
+5. rerun static and runtime validation.

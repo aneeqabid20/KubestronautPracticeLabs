@@ -1,14 +1,13 @@
 # CKA Services & Networking — 20%
 
-Official competencies covered:
-- Pod connectivity
-- NetworkPolicies
-- ClusterIP/NodePort/LoadBalancer Services and endpoints
-- Gateway API
-- Ingress
-- CoreDNS
+13 performance labs covering all 6 official competencies:
 
-Gateway API labs are specification-focused and install the upstream Standard CRDs;
-they do not require a Gateway controller/data plane.
-Ingress labs similarly validate Ingress resources without assuming a specific
-Ingress controller is installed.
+- Understand connectivity between Pods — 2 labs
+- Define and enforce NetworkPolicies — 2 labs
+- Use ClusterIP, NodePort, LoadBalancer Services and endpoints — 3 labs
+- Use Gateway API to manage ingress traffic — 2 labs
+- Use Ingress controllers/resources — 2 labs
+- Understand and use CoreDNS — 2 labs
+
+Gateway API labs provision/validate API resources and do not assume a Gateway
+controller unless the individual question explicitly requires one.

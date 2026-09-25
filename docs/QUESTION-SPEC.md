@@ -2,65 +2,130 @@
 
 Each performance lab lives at:
 
-`<certification>/<domain>/<topic>/qNNN/`
+```text
+<certification>/<domain>/<topic>/qNNN/
+```
 
 Required files:
 
-- `metadata.yaml`
-- `question.md`
-- `setup.sh`
-- `verify.sh`
-- `reset.sh`
-- `solution.md`
-- optional `resources/`
+```text
+metadata.yaml
+question.md
+setup.sh
+verify.sh
+reset.sh
+solution.md
+```
 
-## Metadata
+Optional:
 
-Required top-level fields:
+```text
+resources/
+```
+
+## Metadata contract
+
+Typical metadata:
 
 ```yaml
-id: ckad-application-observability-probes-q001
-certification: CKAD
-domain: Application Observability and Maintenance
-domain_weight: 15
-topic: Implement probes and health checks
+id: cka-troubleshooting-clusters-nodes-q001
+certification: CKA
+domain: Troubleshooting
+domain_weight: 30
+topic: Troubleshoot clusters and nodes
 difficulty: easy
 time_target: 5m
 type: performance
-scope: namespace
-namespace: ckad-q001
+scope: node
 destructive: false
 ```
 
-Supported scope values:
+Additional fields may be used when relevant:
+
+```yaml
+namespace: cka-q001
+target_node: k8slab-node01
+target_component: kube-apiserver
+recovery: local-static-pod-manifest
+
+skills:
+  - kubectl
+  - troubleshooting
+  - kubelet
+```
+
+## Scope
+
+Supported conceptual scopes:
 
 - `namespace`
 - `cluster`
 - `node`
 
-Normal labs should prefer namespace scope.
+Namespace scope should be preferred whenever the skill can be tested without
+changing shared cluster state.
 
-## Setup contract
+## `question.md`
 
-`setup.sh` must:
+Contains only information the learner should receive.
 
-1. create only scenario-owned resources;
-2. create the intended starting/broken state;
-3. wait until that state exists;
-4. validate that the scenario is ready;
-5. never reveal the solution.
+It should:
 
-## Verify contract
+- describe the observable problem;
+- state the required end state;
+- state meaningful constraints;
+- include a target time;
+- avoid revealing the injected root cause unless the task requires a specific fix.
 
-`verify.sh` validates the required end state, not the learner's exact command history.
-Multiple technically valid solutions should pass unless the question explicitly
-constrains the method.
+## `setup.sh`
 
-## Reset contract
+Setup must:
 
-`reset.sh` removes only scenario-owned resources and must be safe to run repeatedly.
+1. check prerequisites/baseline;
+2. clean or safely handle remnants from a previous attempt;
+3. create scenario-owned resources;
+4. inject the intended condition/fault;
+5. wait until the expected starting state exists;
+6. validate that starting state;
+7. fail safely and restore the baseline if preparation cannot complete.
+
+Setup must never solve the question for the learner.
+
+## `verify.sh`
+
+Verification evaluates **resulting state**, not command history.
+
+Where multiple solutions satisfy the requirements, all valid solutions should pass.
+
+Examples:
+
+- replicas actually Ready;
+- node actually Ready;
+- Service actually has correct endpoints;
+- API server actually healthy;
+- NetworkPolicy actually permits/denies the required traffic.
+
+## `reset.sh`
+
+Reset must be repeatable and limited to scenario-owned changes.
+
+For disruptive labs, reset must be capable of restoring the affected component
+even when the Kubernetes API itself is unavailable. The top-level `practice`
+command therefore delegates recovery logic to the question's `reset.sh`.
+
+## Safety metadata
+
+`destructive: true` means the question intentionally disrupts shared cluster
+operation or a control-plane/node component.
+
+Such questions require:
+
+- explicit backup/restore logic;
+- a tested recovery path;
+- no dependence on Kubernetes API availability if the scenario intentionally breaks it;
+- clear isolation from unrelated infrastructure.
 
 ## Exit codes
 
-- 0: successful/pass
-- non-zero: error/fail
+- `0` — setup/reset success or verification PASS
+- non-zero — preparation/recovery failure or verification FAIL
